@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoRide – La Terraza E-Bike</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════
+     SPLASH SCREEN
+════════════════════════════════ -->
+<div class="screen active" id="splash">
+  <div class="splash-bg"></div>
+  <div class="splash-logo">Eco<em>Ride</em></div>
+  <div class="splash-tag">La Terraza · E-Bike Rides</div>
+  <div class="splash-sub">Imus, Cavite</div>
+  <div class="splash-dots"><span></span><span></span><span></span></div>
+</div>
+
+<!-- ═══════════════════════════════
+     LANDING SCREEN
+════════════════════════════════ -->
+<div class="screen" id="landing">
+  <div class="landing-bg"></div>
+  <div class="landing-inner">
+
+    <div class="land-badge">📍 La Terraza Subdivision</div>
+    <div class="land-logo">Eco<em>Ride</em></div>
+    <div class="land-tagline">Your e-bike ride service inside La Terraza, Imus</div>
+
+    <div class="bike-visual">
+      <div class="glow"></div>
+      <image style="position:relative;z-index:1">⚡🚲</image>
+    </div>
+
+    <div class="features">
+      <div class="feat">
+        <div class="feat-icon">🗺️</div>
+        <div class="feat-text"><strong>La Terraza Routes Only</strong>Within-subdivision rides</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">⚡</div>
+        <div class="feat-text"><strong>Zero Emissions</strong>100% electric e-bikes</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">💸</div>
+        <div class="feat-text"><strong>Affordable Fares</strong>Starting at ₱10 per ride</div>
+      </div>
+    </div>
+
+    <div class="land-actions">
+      <button class="btn-primary" onclick="go('role-select')">Use EcoRide →</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     ROLE SELECT SCREEN
+════════════════════════════════ -->
+<div class="screen" id="role-select">
+  <div class="role-bg"></div>
+  <div class="role-inner">
+
+    <div class="role-title">Who are you?</div>
+    <div class="role-sub">Select your role to continue</div>
+
+    <div class="role-cards">
+      <div class="role-card" onclick="selectRole('passenger')">
+        <div class="role-icon passenger">🙋</div>
+        <div class="role-info">
+          <h3>Passenger</h3>
+          <p>Book a ride within La Terraza</p>
+        </div>
+        <div class="role-arrow">›</div>
+      </div>
+
+      <div class="role-card" onclick="selectRole('rider')">
+        <div class="role-icon rider">⚡</div>
+        <div class="role-info">
+          <h3>E-Bike Rider</h3>
+          <p>Accept trips and earn</p>
+        </div>
+        <div class="role-arrow">›</div>
+      </div>
+
+      <div class="role-card" onclick="selectRole('admin')">
+        <div class="role-icon admin">🛡️</div>
+        <div class="role-info">
+          <h3>Admin</h3>
+          <p>Manage the platform</p>
+        </div>
+        <div class="role-arrow">›</div>
+      </div>
+    </div>
+
+    <div class="role-back">
+      <button onclick="go('landing')">← Back to Home</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     LOGIN SCREEN
+════════════════════════════════ -->
+<div class="screen" id="login">
+  <div class="login-inner">
+
+    <div class="login-header">
+      <button class="login-back" onclick="go('role-select')">← Back</button>
+      <div class="login-role-badge" id="loginRoleBadge">Passenger</div>
+      <div class="login-title">Welcome back</div>
+      <div class="login-sub">Sign in to your EcoRide account</div>
+    </div>
+
+    <div class="form-group">
+      <label>Phone / Email</label>
+      <input class="form-input" placeholder="+63 912 345 6789" type="text">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input class="form-input" placeholder="••••••••" type="password">
+    </div>
+    <div class="forgot"><span>Forgot password?</span></div>
+
+    <button class="login-btn" id="loginBtn" onclick="enterApp()">Sign In →</button>
+
+    <div class="login-divider">or</div>
+    <div class="login-register">No account yet? <span>Register here</span></div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     APP SCREEN
+════════════════════════════════ -->
+<div class="screen" id="app">
+
+  <!-- Top Nav -->
+  <div class="app-nav">
+    <div class="nav-logo">Eco<em>Ride</em></div>
+    <div class="nav-badge" id="appBadge">Passenger</div>
+    <button class="nav-logout" onclick="go('landing')">Sign out</button>
+  </div>
+
+  <!-- ─────────────────────────────
+       PASSENGER VIEW
+  ────────────────────────────── -->
+  <div class="view" id="passengerView">
+    <div class="view-body">
+
+      <!-- Home Tab -->
+      <div class="tab on" id="p-home">
+        <div class="welcome-row">
+          <div class="welcome-avatar">J</div>
+          <div>
+            <div style="font-size:15px;font-weight:800">Hey, Juan! 👋</div>
+            <div style="font-size:13px;color:var(--muted)">Where to in La Terraza?</div>
+          </div>
+        </div>
+
+        <div class="map-box">
+          <div class="map-pin">📍</div>
+          <div class="map-label">📌 La Terraza Subdivision, Imus</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Pickup Point</div>
+          <select class="route-select">
+            <option>La Terraza Main Gate</option>
+            <option>Block 1 – Sampaguita St.</option>
+            <option>Block 3 – Rosal St.</option>
+            <option>Block 5 – Ilang-Ilang St.</option>
+            <option>La Terraza Covered Court</option>
+            <option>Phase 2 Entrance</option>
+          </select>
+          <div class="card-label">Drop-off Point</div>
+          <select class="route-select">
+            <option>-- Select destination --</option>
+            <option>La Terraza Main Gate</option>
+            <option>Block 1 – Sampaguita St.</option>
+            <option>Block 3 – Rosal St.</option>
+            <option>Block 5 – Ilang-Ilang St.</option>
+            <option>La Terraza Covered Court</option>
+            <option>Phase 2 Entrance</option>
+            <option>Basketball Court Area</option>
+          </select>
+        </div>
+
+        <div class="card" style="display:flex;align-items:center;gap:14px;padding:14px 16px">
+          <div style="width:46px;height:46px;border-radius:12px;background:var(--green-dim);display:flex;align-items:center;justify-content:center;font-size:24px">⚡</div>
+          <div>
+            <div style="font-size:14px;font-weight:800">E-Bike Ride</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:2px">Within La Terraza · ₱10–25</div>
+          </div>
+          <div style="margin-left:auto"><span class="badge badge-green">Selected ✓</span></div>
+        </div>
+
+        <button class="btn-green">⚡ Book E-Bike Now</button>
+      </div>
+
+      <!-- History Tab -->
+      <div class="tab" id="p-history">
+        <div class="section-title">Ride History</div>
+        <div class="card">
+          <div class="ride-row">
+            <div class="ride-ico">⚡</div>
+            <div class="ride-info"><h4>Main Gate → Block 3</h4><p>Today, 10:32 AM</p></div>
+            <div style="text-align:right"><div class="ride-price">₱15</div><span class="badge badge-green" style="margin-top:4px">Done</span></div>
+          </div>
+          <div class="ride-row">
+            <div class="ride-ico">⚡</div>
+            <div class="ride-info"><h4>Block 5 → Main Gate</h4><p>Yesterday, 3:15 PM</p></div>
+            <div style="text-align:right"><div class="ride-price">₱12</div><span class="badge badge-green" style="margin-top:4px">Done</span></div>
+          </div>
+          <div class="ride-row">
+            <div class="ride-ico">⚡</div>
+            <div class="ride-info"><h4>Covered Court → Phase 2</h4><p>Apr 14, 8:05 AM</p></div>
+            <div style="text-align:right"><div class="ride-price">₱18</div><span class="badge badge-red" style="margin-top:4px">Cancelled</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Tab -->
+      <div class="tab" id="p-profile">
+        <div class="profile-head">
+          <div class="prof-avatar">J</div>
+          <div class="prof-name">Juan dela Cruz</div>
+          <div class="prof-sub">📞 +63 912 345 6789</div>
+          <div style="margin-top:10px"><span class="badge badge-green">Verified ✓</span></div>
+        </div>
+        <div class="card">
+          <div class="list-item"><div class="list-item-icon">✏️</div><div class="list-item-text">Edit Profile</div><div class="list-item-arrow">›</div></div>
+          <div class="list-item"><div class="list-item-icon">🔔</div><div class="list-item-text">Notifications</div><div class="list-item-arrow">›</div></div>
+          <div class="list-item"><div class="list-item-icon">❓</div><div class="list-item-text">Help &amp; Support</div><div class="list-item-arrow">›</div></div>
+          <div class="list-item" onclick="go('landing')"><div class="list-item-icon">🚪</div><div class="list-item-text">Sign Out</div><div class="list-item-arrow">›</div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bot-nav">
+      <button class="bnav-item on" id="pn0" onclick="pTab('home',0)"><span class="ni">🏠</span>Home</button>
+      <button class="bnav-item" id="pn1" onclick="pTab('history',1)"><span class="ni">🕐</span>History</button>
+      <button class="bnav-item" id="pn2" onclick="pTab('profile',2)"><span class="ni">👤</span>Profile</button>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────
+       RIDER VIEW
+  ────────────────────────────── -->
+  <div class="view" id="riderView">
+    <div class="view-body">
+
+      <!-- Home Tab -->
+      <div class="tab on" id="r-home">
+        <div class="card">
+          <div class="toggle-wrap">
+            <div>
+              <div style="font-size:15px;font-weight:800">Go Online</div>
+              <div style="font-size:13px;color:var(--muted)">You're currently offline</div>
+            </div>
+            <label class="toggle">
+              <input type="checkbox">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon">⚡</div><div class="stat-val">8</div><div class="stat-lbl">Trips Today</div></div>
+          <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-val">₱160</div><div class="stat-lbl">Earnings Today</div></div>
+          <div class="stat-card"><div class="stat-icon">⭐</div><div class="stat-val">4.9</div><div class="stat-lbl">Avg. Rating</div></div>
+          <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-val">96%</div><div class="stat-lbl">Acceptance</div></div>
+        </div>
+
+        <div class="map-box">
+          <span style="font-size:36px;position:relative;z-index:1">🗺️</span>
+          <div class="map-label">Waiting for rides in La Terraza...</div>
+        </div>
+
+        <div class="card" style="background:var(--mid);border-color:rgba(34,197,94,0.3)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div style="font-size:13px;font-weight:800;color:var(--green)">⚡ New Ride Request</div>
+            <div style="font-size:20px;font-weight:800;color:var(--green)">₱15</div>
+          </div>
+          <div class="dot-line" style="margin-bottom:12px">
+            <div class="dot-pt"><div class="dot dot-g"></div> La Terraza Main Gate</div>
+            <div class="dot-pt"><div class="dot dot-r"></div> Block 3 – Rosal St.</div>
+          </div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:12px">📏 0.8 km · ⏱️ ~4 mins</div>
+          <div style="display:flex;gap:8px">
+            <button class="btn-outline btn-sm" style="flex:1">✕ Decline</button>
+            <button class="btn-green btn-sm" style="flex:1">✓ Accept</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Earnings Tab -->
+      <div class="tab" id="r-earnings">
+        <div class="card">
+          <div class="card-label">This Week</div>
+          <div style="text-align:center;padding:8px 0 4px">
+            <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--green)">₱840</div>
+            <div style="font-size:13px;color:var(--muted)">23 trips completed</div>
+          </div>
+          <div class="bar-chart">
+            <div class="bar-col"><div class="bar" style="height:40%"></div><div class="bar-day">M</div></div>
+            <div class="bar-col"><div class="bar" style="height:60%"></div><div class="bar-day">T</div></div>
+            <div class="bar-col"><div class="bar" style="height:80%"></div><div class="bar-day">W</div></div>
+            <div class="bar-col"><div class="bar" style="height:50%"></div><div class="bar-day">T</div></div>
+            <div class="bar-col"><div class="bar hi" style="height:100%"></div><div class="bar-day">F</div></div>
+            <div class="bar-col"><div class="bar" style="height:90%"></div><div class="bar-day">S</div></div>
+            <div class="bar-col"><div class="bar" style="height:30%"></div><div class="bar-day">S</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label">Recent Trips</div>
+          <div class="ride-row"><div class="ride-ico">⚡</div><div class="ride-info"><h4>Juan dela Cruz</h4><p>Main Gate → Block 3 · 10:32 AM</p></div><div class="ride-price">₱15</div></div>
+          <div class="ride-row"><div class="ride-ico">⚡</div><div class="ride-info"><h4>Maria Santos</h4><p>Block 5 → Covered Court · 9:14 AM</p></div><div class="ride-price">₱18</div></div>
+          <div class="ride-row"><div class="ride-ico">⚡</div><div class="ride-info"><h4>Pedro Reyes</h4><p>Phase 2 → Main Gate · 8:05 AM</p></div><div class="ride-price">₱12</div></div>
+        </div>
+      </div>
+
+      <!-- Profile Tab -->
+      <div class="tab" id="r-profile">
+        <div class="profile-head">
+          <div class="prof-avatar">M</div>
+          <div class="prof-name">Mark Santos</div>
+          <div class="prof-sub">📍 La Terraza, Imus</div>
+          <div style="margin-top:10px;display:flex;gap:8px;justify-content:center">
+            <span class="badge badge-green">Verified ✓</span>
+            <span class="badge badge-blue">Top Rider</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="list-item"><div class="list-item-icon">⚡</div><div class="list-item-text">My E-Bike</div><div class="list-item-arrow">›</div></div>
+          <div class="list-item"><div class="list-item-icon">📄</div><div class="list-item-text">Documents</div><div class="list-item-arrow">›</div></div>
+          <div class="list-item"><div class="list-item-icon">🏦</div><div class="list-item-text">GCash Account</div><div class="list-item-arrow">›</div></div>
+          <div class="list-item" onclick="go('landing')"><div class="list-item-icon">🚪</div><div class="list-item-text">Sign Out</div><div class="list-item-arrow">›</div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bot-nav">
+      <button class="bnav-item on" id="rn0" onclick="rTab('home',0)"><span class="ni">🏠</span>Home</button>
+      <button class="bnav-item" id="rn1" onclick="rTab('earnings',1)"><span class="ni">💰</span>Earnings</button>
+      <button class="bnav-item" id="rn2" onclick="rTab('profile',2)"><span class="ni">👤</span>Profile</button>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────
+       ADMIN VIEW
+  ────────────────────────────── -->
+  <div class="view" id="adminView">
+    <div class="view-body">
+
+      <!-- Dashboard Tab -->
+      <div class="tab on" id="a-dash">
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon">⚡</div><div class="stat-val">142</div><div class="stat-lbl">Total Rides</div></div>
+          <div class="stat-card"><div class="stat-icon">💵</div><div class="stat-val">₱2.4K</div><div class="stat-lbl">Revenue</div></div>
+          <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-val">38</div><div class="stat-lbl">Passengers</div></div>
+          <div class="stat-card"><div class="stat-icon">🚲</div><div class="stat-val">6</div><div class="stat-lbl">Active Riders</div></div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div class="section-title" style="margin-bottom:0">Live Rides</div>
+            <span class="badge badge-green">● 3 Active</span>
+          </div>
+          <table class="admin-table">
+            <tr><th>Passenger</th><th>Rider</th><th>Route</th><th>Status</th></tr>
+            <tr><td>Juan D.</td><td>Mark S.</td><td>Gate → Blk 3</td><td><span class="badge badge-blue">On Trip</span></td></tr>
+            <tr><td>Maria R.</td><td>Carlo B.</td><td>Blk 5 → Court</td><td><span class="badge badge-yellow">Pickup</span></td></tr>
+            <tr><td>Pedro L.</td><td>Jose M.</td><td>Phase 2 → Gate</td><td><span class="badge badge-green">Done</span></td></tr>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Revenue This Week</div>
+          <div class="bar-chart">
+            <div class="bar-col"><div class="bar" style="height:40%"></div><div class="bar-day">M</div></div>
+            <div class="bar-col"><div class="bar" style="height:60%"></div><div class="bar-day">T</div></div>
+            <div class="bar-col"><div class="bar" style="height:80%"></div><div class="bar-day">W</div></div>
+            <div class="bar-col"><div class="bar" style="height:50%"></div><div class="bar-day">T</div></div>
+            <div class="bar-col"><div class="bar hi" style="height:100%"></div><div class="bar-day">F</div></div>
+            <div class="bar-col"><div class="bar" style="height:90%"></div><div class="bar-day">S</div></div>
+            <div class="bar-col"><div class="bar" style="height:30%"></div><div class="bar-day">S</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Users Tab -->
+      <div class="tab" id="a-users">
+        <div class="section-title">All Users</div>
+        <div class="card">
+          <table class="admin-table">
+            <tr><th>Name</th><th>Role</th><th>Status</th></tr>
+            <tr><td style="font-weight:700">Juan dela Cruz</td><td>Passenger</td><td><span class="badge badge-green">Active</span></td></tr>
+            <tr><td style="font-weight:700">Mark Santos</td><td>Rider</td><td><span class="badge badge-blue">Online</span></td></tr>
+            <tr><td style="font-weight:700">Maria Reyes</td><td>Passenger</td><td><span class="badge badge-green">Active</span></td></tr>
+            <tr><td style="font-weight:700">Carlo Bautista</td><td>Rider</td><td><span class="badge badge-blue">Online</span></td></tr>
+            <tr><td style="font-weight:700">Pedro Lim</td><td>Passenger</td><td><span class="badge badge-red">Inactive</span></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Routes Tab -->
+      <div class="tab" id="a-routes">
+        <div class="section-title">La Terraza Routes</div>
+        <div class="card">
+          <div class="card-label">Popular Routes</div>
+          <div style="margin-bottom:12px">
+            <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:5px"><span>Main Gate → Block 3</span><span>48 trips</span></div>
+            <div style="height:6px;background:var(--border);border-radius:3px"><div style="height:100%;width:85%;background:var(--green);border-radius:3px"></div></div>
+          </div>
+          <div style="margin-bottom:12px">
+            <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:5px"><span>Block 5 → Covered Court</span><span>31 trips</span></div>
+            <div style="height:6px;background:var(--border);border-radius:3px"><div style="height:100%;width:55%;background:var(--green);border-radius:3px"></div></div>
+          </div>
+          <div style="margin-bottom:12px">
+            <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:5px"><span>Phase 2 → Main Gate</span><span>27 trips</span></div>
+            <div style="height:6px;background:var(--border);border-radius:3px"><div style="height:100%;width:48%;background:var(--green);border-radius:3px"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:5px"><span>Block 1 → Phase 2</span><span>19 trips</span></div>
+            <div style="height:6px;background:var(--border);border-radius:3px"><div style="height:100%;width:33%;background:var(--green);border-radius:3px"></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label">All Route Stops</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="route-tag">📍 La Terraza Main Gate <span>Entry/Exit</span></div>
+            <div class="route-tag">📍 Block 1 – Sampaguita St.</div>
+            <div class="route-tag">📍 Block 3 – Rosal St.</div>
+            <div class="route-tag">📍 Block 5 – Ilang-Ilang St.</div>
+            <div class="route-tag">📍 La Terraza Covered Court <span>Center</span></div>
+            <div class="route-tag">📍 Phase 2 Entrance</div>
+            <div class="route-tag">📍 Basketball Court Area</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bot-nav">
+      <button class="bnav-item on" id="an0" onclick="aTab('dash',0)"><span class="ni">📊</span>Dashboard</button>
+      <button class="bnav-item" id="an1" onclick="aTab('users',1)"><span class="ni">👥</span>Users</button>
+      <button class="bnav-item" id="an2" onclick="aTab('routes',2)"><span class="ni">🗺️</span>Routes</button>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<script src="app.js"></script>
+</body>
+</html>
